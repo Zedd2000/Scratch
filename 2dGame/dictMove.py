@@ -34,7 +34,7 @@ def on_press(key):
 ########################
 
 
-def gridPrint():
+def gridPrint(): # Play space is printed out.
     print("#" + ("-"*20) + "#")
     delta = "|"
     for i in x9:
@@ -88,7 +88,7 @@ def gridPrint():
     print(delta)
     print("#" + ("-"*20) + "#")
 
-def posReset(X,Y):
+def posReset(X,Y): #Player sprite removed to avoid streaking.
     if Y == 0:
         x0[X] = " "
     elif Y == 1:
@@ -110,7 +110,7 @@ def posReset(X,Y):
     elif Y == 9:
         x9[X] = " "
 
-def posCheck(X,Y):
+def posCheck(X,Y): # Player position checked and displayed.
     if Y == 0:
         x0[X] = "0"
     elif Y == 1:
@@ -132,19 +132,19 @@ def posCheck(X,Y):
     elif Y == 9:
         x9[X] = "0"
 
-def keyListen():
+def keyListen(): #Used to detect players keystrokes. Partial vesion of code from StackOverflow.
     with Listener(
         on_press=on_press,
         on_release=on_release) as listener:
         listener.join()
-def keyRotate(pDeg):
-    print("FOO")
+def keyRotate(pDeg,rotInput): #Uses player input of A or D to rotate Player Character.
+    print()
 
 playerY = 5
 playerX = 10
 
 
-threading.Thread(target=keyListen).start()
+threading.Thread(target=keyListen).start() # Key listener put on seperate thread to allow for other processes to run as well.
 
 while True:
     clear()
@@ -154,4 +154,4 @@ while True:
     posCheck(playerX,playerY)
     gridPrint()
     posReset(playerX,playerY)
-    time.sleep(0.0416)
+    time.sleep(0.0416) # Pausing loop here for 0.0416 seconds to make the output 24 frames per second.
