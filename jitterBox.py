@@ -1,13 +1,8 @@
 from core import clear
-from pynput.keyboard import Key, Listener
 import random
 import time
-import threading
 
 #dimY = int(input("Dimentions : ")) TODO Get monitor dimentions and use them for this
-
-playerBaseSpd = 1
-playerDeg = 0
 
 x9 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
 x8 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
@@ -19,20 +14,6 @@ x3 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," 
 x2 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
 x1 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
 x0 = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
-
-######################## Key Listener
-def on_press(key):
-    print('{0} pressed'.format(
-        key))
-
-#def on_release(key):
-#    print('{0} release'.format(
-#        key))
-#    if key == Key.esc:
-#        # Stop listener
-#        return False
-########################
-
 
 def gridPrint():
     print("#" + ("-"*20) + "#")
@@ -132,25 +113,10 @@ def posCheck(X,Y):
     elif Y == 9:
         x9[X] = "0"
 
-def keyListen():
-    with Listener(
-        on_press=on_press,
-        on_release=on_release) as listener:
-        listener.join()
-def keyRotate(pDeg):
-    print("FOO")
-
-playerY = 5
-playerX = 10
-
-
-threading.Thread(target=keyListen).start()
-
 while True:
+    playerY = random.randint(0,9)
+    playerX = random.randint(0,19)
     clear()
-
-
-
     posCheck(playerX,playerY)
     gridPrint()
     posReset(playerX,playerY)
